@@ -1,0 +1,40 @@
+pipelines:
+    branches:
+        staging:
+            - step:
+                name: Assets Compilation
+                image: fulldigits/yarn:node-10-git
+                caches:
+                    - nodemodules
+                artifacts:
+                    - dist/**
+                script:
+                    - npm install
+                    - npm run build
+            - step:
+                name: Zip and Sending Files
+                image: fulldigits/ssh-scp-zip
+                artifacts:
+                    - dist/**
+                script:
+                    - cd dist; zip -r ../dist.zip *; cd ..
+                    - ssh-keyscan fd-staging-php72.fulldigits.com >> ~/.ssh/known_hosts
+                    - export RELEASE=$(date +%Y%m%d%H%M%S)
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Starting SSH Deploy" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'mkdir -p /var/www/mapanyplace.site-check.me/releases/'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Sending dist archive" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - scp dist.zip mapanyplace-shu@fd-staging-php72.fulldigits.com:"/var/www/mapanyplace.site-check.me/releases/"
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Create Release Folder" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'mkdir -p /var/www/mapanyplace.site-check.me/releases/'"'$RELEASE'"''
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Unarchive dist" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'unzip -qq "/var/www/mapanyplace.site-check.me/releases/dist.zip" -d /var/www/mapanyplace.site-check.me/releases/'"'$RELEASE'"''
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Remove archive" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'rm /var/www/mapanyplace.site-check.me/releases/dist.zip'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Create Symbolic Link to current/" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'ln -nfs /var/www/mapanyplace.site-check.me/releases/'"'$RELEASE'"' /var/www/mapanyplace.site-check.me/current'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Cleaning Old releases" >> /var/www/mapanyplace.site-check.me/deploy.log'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'find /var/www/mapanyplace.site-check.me/releases/ -maxdepth 1 -name "20*" | sort | head -n -2 | xargs rm -Rf'
+                    - ssh mapanyplace-shu@fd-staging-php72.fulldigits.com 'echo "`date +%Y-%m-%d.%H:%M:%S` Successfully deployed" >> /var/www/mapanyplace.site-check.me/deploy.log'
+definitions:
+  caches:
+    nodemodules: node_modules

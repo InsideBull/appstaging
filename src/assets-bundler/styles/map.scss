@@ -1,0 +1,770 @@
+@import url("//unpkg.com/element-ui@2.4.8/lib/theme-chalk/index.css");
+#inspire {
+    overflow: hidden;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.item {
+    font-size: 20px;
+}
+
+#copy {
+    color: black;
+}
+
+.mapboxgl-map {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.geocoder {
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#markerGeocoder {
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+}
+
+.title {
+    background-color: #5ac4bb;
+    color: white;
+}
+
+.rotating {
+    transition: transform 1s ease-in-out;
+}
+
+.rotating:hover {
+    transform: rotateZ(360deg);
+    opacity: 0.3;
+}
+
+.btnTooltip {
+    margin-left: 300px;
+}
+
+@media screen and (max-width: 1260px) {
+    .btnTooltip {
+        margin-left: 0px;
+    }
+}
+
+.router-link-active {
+    color: white;
+    text-decoration: none;
+}
+
+.router-link-active:hover {
+    color: #efe7e7;
+    text-decoration: none;
+}
+
+.entete {
+    font-size: 20px;
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 50%;
+    padding: 8px;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    background: #5ac4bb;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.vc-chrome {
+    position: relative;
+    margin: 0 auto;
+    z-index: 9;
+}
+
+.current-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #000;
+    cursor: pointer;
+}
+
+.mapboxgl-ctrl-geocoder input[type="text"] {
+    font-size: 12px;
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    height: 40px;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 10px 10px 10px 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.mapboxgl-ctrl-geocoder input:focus {
+    color: rgba(0, 0, 0, 0.75);
+    outline: 0;
+    box-shadow: none;
+    outline: thin dotted\8;
+}
+
+.navigation {
+    margin-left: 300px;
+}
+
+.arrow:hover {
+    cursor: pointer;
+}
+
+.newMarker {
+    margin-right: 20px;
+}
+
+.newMarker:hover {
+    cursor: pointer;
+}
+
+#liste {
+    margin-top: 20px;
+}
+
+#place input {}
+
+#btnDelMarker {
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    float: right;
+    background: url("../../assets/remove.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    border: none;
+}
+
+.markerTitle:hover+#btnDelMarker {
+    opacity: 1;
+}
+
+#btnDelMarker:hover {
+    opacity: 1;
+}
+
+#icon-full,
+#icon-full_exit {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.marker {
+    height: 40px;
+    width: 40px;
+}
+
+.numberCircle {
+    font: 32px Arial, sans-serif;
+    width: 2em;
+    height: 2em;
+    box-sizing: initial;
+    background: #fff;
+    border: 0.1em solid #666;
+    color: #666;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 2em;
+    box-sizing: content-box;
+}
+
+.selectImage {
+    height: 100px;
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.info {
+    font-size: 18px;
+}
+
+.info>span {
+    font-weight: bold;
+}
+
+.fade-enter-active {
+    transition: opacity 1s ease;
+}
+
+.fade-leave-active {
+    transition: opacity 3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.ulPin {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.listePin {
+    float: left;
+    /*pour IE*/
+    border-left: 1px solid black;
+}
+
+.ulPin .listePin a {
+    display: block;
+    float: left;
+    width: 100px;
+    line-height: 50px;
+    /*hauteur de l'image de fond*/
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 0.1px;
+}
+
+#pin1 .btn-pin {
+    background-image: url("../../assets/red_pin.png");
+}
+
+#pin2 .btn-pin {
+    background-image: url("../../assets/blue_pin.png");
+}
+
+#pin3 .btn-pin {
+    background-image: url("../../assets/yellow_pin.png");
+}
+
+#pin4 .btn-pin {
+    background-image: url("../../assets/green_pin.png");
+}
+
+#pin5 .btn-pin {
+    background-image: url("../../assets/violet_pin.png");
+}
+
+#clonepin1 .btn-pin {
+    background-image: url("../../assets/red_pin.png");
+}
+
+#clonepin2 .btn-pin {
+    background-image: url("../../assets/blue_pin.png");
+}
+
+#clonepin3 .btn-pin {
+    background-image: url("../../assets/yellow_pin.png");
+}
+
+#clonepin4 .btn-pin {
+    background-image: url("../../assets/green_pin.png");
+}
+
+#clonepin5 .btn-pin {
+    background-image: url("../../assets/violet_pin.png");
+}
+
+.btn-pin {
+    width: 50px;
+    height: 60px;
+}
+
+.v-btn-toggle {
+    margin-left: 30px;
+}
+
+.v-btn-toggle--selected {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.ulPin .listePin a:hover {
+    background: white repeat-x;
+    color: white;
+}
+
+#grid-coordinates {
+    margin-top: -30px;
+}
+
+.markerName {
+    margin-top: -20px;
+}
+
+.v-btn-toggle {
+    width: auto;
+    height: 60px;
+}
+
+#conteneur {
+    display: flex;
+    flex: wrap;
+}
+
+.element {
+    width: 300px;
+    height: 300px;
+}
+
+#footer {
+    display: none;
+}
+
+.footer {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.info {
+    font-size: 18px;
+}
+
+.info>span {
+    font-weight: bold;
+}
+
+.flyerTitle {
+    font-size: 30px;
+    font-style: bold;
+    color: #5ac4bb;
+}
+
+.drag-wrapper {
+    display: flex;
+}
+
+#ulMarker {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    list-style-type: none;
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 60px;
+    background-color: #fff;
+    margin-left: -20px;
+    cursor: pointer;
+}
+
+
+/* drop target state */
+
+#ulMarker[aria-dropeffect="move"] {
+    border-color: #68b;
+    background: #fff;
+}
+
+
+/* drop target focus and dragover state */
+
+#ulMarker[aria-dropeffect="move"]:focus,
+#ulMarker[aria-dropeffect="move"].dragover {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #68b;
+}
+
+
+/* draggable items */
+
+#listeMarker {
+    display: block;
+    list-style-type: decimal;
+    padding: 1em 1em;
+    border-radius: 0.2em;
+    line-height: 1.3;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    text-decoration: none;
+    width: 290px;
+    counter-increment: li;
+}
+
+#listeMarker::before {
+    content: counter(li);
+    display: inline-block;
+    width: 1em;
+    margin-left: 2px;
+    padding-right: 25px;
+    list-style-position: outside;
+}
+
+#listeFlyerMarker {
+    display: block;
+    padding: 1em 1em;
+    border-radius: 0.2em;
+    line-height: 1.3;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    text-decoration: none;
+    width: 270px;
+    counter-increment: li;
+}
+
+#listeFlyerMarker::before {
+    content: counter(li);
+    display: inline-block;
+    width: 1em;
+    margin-left: 2px;
+    padding-right: 25px;
+    list-style-position: outside;
+}
+
+#listeMarker:hover {
+    box-shadow: 0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+    cursor: pointer;
+}
+
+
+/* items focus state */
+
+#listeMarker:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+}
+
+
+/* items grabbed state */
+
+#listeMarker[aria-grabbed="true"] {
+    background: #5cc1a6;
+    color: #fff;
+}
+
+#ulflyerMarker {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    width: 100%;
+    overflow-y: auto;
+    margin-left: -30px;
+}
+
+
+/* drop target state */
+
+#ulflyerMarker[aria-dropeffect="move"] {
+    border-color: #68b;
+    background: #fff;
+}
+
+
+/* drop target focus and dragover state */
+
+#ulflyerMarker[aria-dropeffect="move"]:focus,
+#ulflyerMarker[aria-dropeffect="move"].dragover {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #68b;
+}
+
+
+/* draggable items */
+
+#listeflyerMarker {
+    display: block;
+    list-style-type: none;
+    margin: 0 0 2px 0;
+    padding: 1em 1em;
+    border-radius: 0.2em;
+    line-height: 1.3;
+}
+
+#listeflyerMarker:hover {
+    box-shadow: 0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+    cursor: pointer;
+}
+
+
+/* items focus state */
+
+#listeflyerMarker:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #68b, inset 0 0 0 1px #ddd;
+}
+
+
+/* items grabbed state */
+
+#listeflyerMarker[aria-grabbed="true"] {
+    background: #5cc1a6;
+    color: #fff;
+}
+
+@keyframes nodeInserted {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 0.8;
+    }
+}
+
+.item-dropzone-area {
+    height: 100px;
+    background: #5ac4bb;
+    opacity: 0.8;
+    animation-duration: 0.5s;
+    animation-name: nodeInserted;
+}
+
+.switchBtn {
+    margin-bottom: 50px;
+    margin-right: 70px;
+}
+
+.layoutFlyer {
+    height: 570px;
+}
+
+.v-btn:before {
+    height: 60px;
+}
+
+.ProseMirror .h1 {
+    font-weight: bold;
+    color: #68b;
+}
+
+#flyerMarker {
+    margin-left: 10px;
+    width: 100%;
+    box-shadow: none;
+    margin-right: 5px;
+}
+
+.v-card .card-flyer {
+    margin-top: -20px;
+    margin-bottom: -10px;
+    margin-left: -10px;
+}
+
+.test {
+    column-count: 0;
+}
+
+.v-card .drag-wrapper {
+    margin-right: -10px;
+    margin-left: -15px;
+}
+
+.v-card .card-list-marker {
+    margin-left: -10px;
+}
+
+.v-card {
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.img-flyer {
+    margin-top: 10px;
+    object-fit: cover;
+    height: 200px;
+}
+
+
+/*input[type="file"] {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+input[type="file"] + label {
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 5px;
+    background: lavender;
+    cursor: pointer;
+}*/
+
+.editor-example {
+    position: relative;
+    z-index: 2;
+}
+
+.toolbar .ql-bubble .ql-tooltip {
+    margin-left: 70px;
+}
+
+.container {
+    overflow: auto;
+}
+
+.img-main {
+    margin-left: 10px;
+}
+
+.v-btn--active:before,
+.v-btn:focus:before,
+.v-btn:hover:before {
+    background-color: transparent;
+}
+
+.alertImageError {
+    margin-top: 100px;
+}
+
+.icon {
+    margin-top: -20px;
+}
+
+.fill-content-exemple {
+    align-content: center;
+}
+
+.fill-content-exemple h1 {
+    font-size: 30px;
+}
+
+.fill-content-exemple h2 {
+    font-size: 20px;
+}
+
+.btn-download {
+    float: left;
+}
+
+.ql-clipboard {
+    z-index: 0;
+}
+
+#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #FFF;
+    z-index: 99999;
+}
+
+.preloader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.preloader span {
+    display: inline-block;
+    background-color: #5ac4bb;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: 1s preload ease-in-out infinite;
+    animation: preload 1s ease-in-out infinite;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    border-radius: 50%;
+}
+
+.preloader span:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+
+.preloader span:nth-child(2) {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+.preloader span:nth-child(3) {
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+}
+
+.preloader span:nth-child(4) {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+@-webkit-keyframes preload {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@keyframes preload {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+.vdr[data-v-2bcd502f] {
+    position: absolute;
+    z-index: 100;
+}
+
+.drag {
+    height: 100px;
+}
+
+.fill-content {
+    overflow: none;
+    text-align: center;
+}
+
+#try {
+    position: absolute;
+    z-index: 100;
+}
+
+.clone {
+    display: none;
+}
+
+.addHeading:hover {
+    cursor: pointer;
+}
+
+.adh {
+    position: relative;
+    z-index: 3;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.fill-content p {
+    text-align: center;
+}
